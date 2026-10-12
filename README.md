@@ -1,53 +1,54 @@
 # Math Lib (School 21)
 
-`Math Lib` - учебный проект School 21, в котором реализована собственная версия части стандартной математической библиотеки `math.h` на языке C.
+`Math Lib` is a School 21 educational project that implements a custom version of part of the standard C `math.h` library.
 
-Проект не использует готовые реализации из стандартной библиотеки в основном коде. Задача состояла в том, чтобы самостоятельно разобрать, как работают базовые математические функции, реализовать их численными методами, собрать в статическую библиотеку и проверить поведение на unit-тестах через сравнение с `math.h`.
+The project does not use ready-made implementations from the standard library in its core code. The goal was to understand how basic mathematical functions work, implement them using numerical methods, build them into a static library, and check their behavior with unit tests by comparing the results with `math.h`.
 
-Техническое имя библиотеки в коде - `s21_math`: функции имеют префикс `s21_`, заголовочный файл называется `s21_math.h`, а результат сборки - `s21_math.a`.
+The library's technical name in the code is `s21_math`: functions use the `s21_` prefix, the header file is `s21_math.h`, and the build output is `s21_math.a`.
 
-## В чем суть проекта
+## Project overview
 
-Стандартная библиотека `math.h` кажется привычной и "готовой", но за функциями вроде `sin`, `log`, `sqrt` и `pow` стоят численные алгоритмы, обработка особых значений и компромисс между точностью и скоростью. В этом проекте нужно было пройти этот путь вручную:
+The standard `math.h` library may seem familiar and ready to use, but functions such as `sin`, `log`, `sqrt`, and `pow` rely on numerical algorithms, special-value handling, and trade-offs between accuracy and speed. This project implements those fundamentals from scratch:
 
-- реализовать математические функции с префиксом `s21_`;
-- оформить их как статическую библиотеку `s21_math.a`;
-- вынести публичный интерфейс в заголовочный файл `s21_math.h`;
-- добиться поведения, близкого к стандартной `math.h`;
-- покрыть функции unit-тестами;
-- подготовить отчет покрытия через `gcov/lcov`.
+- implement mathematical functions with the `s21_` prefix;
+- package them as the static library `s21_math.a`;
+- expose the public interface in the `s21_math.h` header;
+- match the behavior of the standard `math.h` as closely as possible;
+- cover the functions with unit tests;
+- prepare a coverage report using `gcov/lcov`.
 
-Проект помогает лучше понять не только C и сборку статических библиотек, но и прикладную математику: разложения в ряды, итерационные приближения, нормализацию аргументов, работу с `NaN`, бесконечностями и граничными значениями.
+The project helps build a better understanding of C and static-library builds, as well as applied mathematics: series expansions, iterative approximations, argument normalization, and handling `NaN`, infinities, and boundary values.
 
-## Реализованные функции
+## Implemented functions
 
-В библиотеке реализованы аналоги основных функций `math.h`:
+The library implements equivalents of the main `math.h` functions:
 
-| Функция | Назначение |
+| Function | Purpose |
 | --- | --- |
-| `s21_abs` | модуль целого числа |
-| `s21_fabs` | модуль числа с плавающей точкой |
-| `s21_ceil` | округление вверх |
-| `s21_floor` | округление вниз |
-| `s21_fmod` | остаток от деления чисел с плавающей точкой |
-| `s21_sqrt` | квадратный корень |
-| `s21_exp` | экспонента |
-| `s21_log` | натуральный логарифм |
-| `s21_pow` | возведение в степень |
-| `s21_sin` | синус |
-| `s21_cos` | косинус |
-| `s21_tan` | тангенс |
-| `s21_asin` | арксинус |
-| `s21_acos` | арккосинус |
-| `s21_atan` | арктангенс |
+| `s21_abs` | absolute value of an integer |
+| `s21_fabs` | absolute value of a floating-point number |
+| `s21_ceil` | round up |
+| `s21_floor` | round down |
+| `s21_fmod` | remainder of floating-point division |
+| `s21_sqrt` | square root |
+| `s21_exp` | exponential function |
+| `s21_log` | natural logarithm |
+| `s21_pow` | raise a number to a power |
+| `s21_sin` | sine |
+| `s21_cos` | cosine |
+| `s21_tan` | tangent |
+| `s21_asin` | arcsine |
+| `s21_acos` | arccosine |
+| `s21_atan` | arctangent |
 
-Все публичные объявления находятся в [`src/s21_math.h`](src/s21_math.h).
+All public declarations are in [`src/s21_math.h`](src/s21_math.h).
 
-## Структура проекта
+## Project structure
 
 ```text
 .
 ├── README.md
+├── README_RUS.md
 └── src
     ├── Makefile
     ├── s21_*.c
@@ -57,18 +58,18 @@
         └── s21_math_test.*
 ```
 
-Основной код библиотеки лежит в `src/s21_*.c`. Тесты находятся в `src/unit_tests` и сравнивают результат `s21_`-функций с поведением стандартной библиотеки `math.h`.
+The library's source code is in `src/s21_*.c`. Tests are in `src/unit_tests` and compare the results of the `s21_` functions with the behavior of the standard `math.h` library.
 
-## Требования
+## Requirements
 
-Для сборки и проверки нужны:
+To build and check the project, you need:
 
-- `gcc` или совместимый C-компилятор;
+- `gcc` or a compatible C compiler;
 - `make`;
-- библиотека `check` для unit-тестов;
-- `lcov` и `genhtml` для HTML-отчета покрытия.
+- the `check` library for unit tests;
+- `lcov` and `genhtml` for an HTML coverage report.
 
-Пример установки зависимостей:
+Example dependency installation:
 
 ```bash
 # macOS
@@ -79,67 +80,67 @@ sudo apt update
 sudo apt install build-essential check lcov
 ```
 
-## Как собрать проект
+## Building the project
 
-Перейдите в папку с исходниками:
+Go to the source directory:
 
 ```bash
 cd src
 ```
 
-Соберите статическую библиотеку:
+Build the static library:
 
 ```bash
 make
 ```
 
-или явно:
+Or specify the target explicitly:
 
 ```bash
 make s21_math.a
 ```
 
-После сборки появятся:
+The build produces:
 
-- `s21_math.a` - статическая библиотека;
-- `libs21_math.a` - копия библиотеки с префиксом `lib`, удобная для линковки через `-ls21_math`.
+- `s21_math.a` — the static library;
+- `libs21_math.a` — a copy of the library with the `lib` prefix, suitable for linking with `-ls21_math`.
 
-## Как запустить тесты
+## Running the tests
 
-Из папки `src` выполните:
+From the `src` directory, run:
 
 ```bash
 make test
 ```
 
-Эта команда:
+This command:
 
-1. собирает библиотеку `s21_math.a`;
-2. компилирует unit-тесты из `unit_tests`;
-3. запускает исполняемый файл `unit_test`;
-4. выводит результат прохождения тестовых наборов в терминал.
+1. builds the `s21_math.a` library;
+2. compiles the unit tests from `unit_tests`;
+3. runs the `unit_test` executable;
+4. prints the test-suite results in the terminal.
 
-Если тесты не собираются с ошибкой вида `check.h file not found`, значит в системе не установлена библиотека `check` или компилятор не видит ее заголовочные файлы.
+If the tests fail to compile with an error such as `check.h file not found`, the `check` library may not be installed, or the compiler may not be able to find its header files.
 
-## Как проверить покрытие
+## Checking coverage
 
-Для генерации HTML-отчета покрытия выполните:
+To generate an HTML coverage report, run:
 
 ```bash
 make gcov_report
 ```
 
-Команда собирает тесты с флагами покрытия, запускает их, собирает данные через `lcov` и генерирует отчет в папке:
+The command builds the tests with coverage flags, runs them, collects data with `lcov`, and generates a report at:
 
 ```text
 src/report/index.html
 ```
 
-На macOS и Linux `Makefile` также пытается автоматически открыть отчет в браузере.
+On macOS and Linux, the `Makefile` also attempts to open the report in a browser automatically.
 
-## Как использовать библиотеку в своем коде
+## Using the library in your code
 
-Пример:
+Example:
 
 ```c
 #include "s21_math.h"
@@ -152,47 +153,47 @@ int main(void) {
 }
 ```
 
-Сборка рядом с папкой `src`:
+To build from the project root:
 
 ```bash
 gcc main.c src/s21_math.a -I src -o app
 ./app
 ```
 
-## Основные Makefile-команды
+## Main Makefile commands
 
-| Команда | Что делает |
+| Command | Description |
 | --- | --- |
-| `make` / `make all` | собирает статическую библиотеку |
-| `make s21_math.a` | собирает `s21_math.a` |
-| `make test` | собирает и запускает unit-тесты |
-| `make gcov_report` | генерирует HTML-отчет покрытия |
-| `make clean` | удаляет артефакты сборки, тестов и покрытия |
+| `make` / `make all` | builds the static library |
+| `make s21_math.a` | builds `s21_math.a` |
+| `make test` | builds and runs the unit tests |
+| `make gcov_report` | generates an HTML coverage report |
+| `make clean` | removes build, test, and coverage artifacts |
 
-## Что было важно в реализации
+## Implementation goals
 
-- Не копировать код стандартной `math.h`.
-- Использовать стандарт C11 и флаги `-Wall -Werror -Wextra`.
-- Проверять точность функций на большом наборе обычных и граничных значений.
-- Обрабатывать специальные случаи: ноль, отрицательные аргументы, бесконечности, `NaN`, большие и малые значения.
-- Поддерживать единый публичный интерфейс через `s21_math.h`.
+- Do not copy code from the standard `math.h` library.
+- Use the C11 standard and the `-Wall -Werror -Wextra` flags.
+- Check function accuracy across a broad set of ordinary and boundary values.
+- Handle special cases: zero, negative arguments, infinities, `NaN`, and very large or small values.
+- Keep a consistent public interface through `s21_math.h`.
 
-## Идеи для развития
+## Ideas for further development
 
-В проект можно добавить:
+Possible additions to the project:
 
-- CI-пайплайн, который автоматически запускает `make test` и `make gcov_report`;
-- бейджи статуса сборки и покрытия в README;
-- больше тестов на граничные случаи: `NaN`, `inf`, `-0.0`, очень большие и очень маленькие числа;
-- отдельный раздел с описанием алгоритмов для каждой функции;
-- сравнительный бенчмарк `s21_math` против стандартной `math.h`;
-- проверку стиля через `clang-format`;
-- санитайзеры `AddressSanitizer` и `UndefinedBehaviorSanitizer`;
-- примеры использования библиотеки в маленьких C-программах.
+- a CI pipeline that automatically runs `make test` and `make gcov_report`;
+- build and coverage status badges in the README;
+- more boundary-case tests for `NaN`, `inf`, `-0.0`, and very large or small numbers;
+- a separate section describing the algorithms used by each function;
+- a benchmark comparing `s21_math` with the standard `math.h` library;
+- style checks with `clang-format`;
+- `AddressSanitizer` and `UndefinedBehaviorSanitizer`;
+- usage examples in small C programs.
 
-## Очистка проекта
+## Cleaning the project
 
-Чтобы удалить собранные файлы, отчеты покрытия и тестовые бинарники:
+To remove generated files, coverage reports, and test binaries:
 
 ```bash
 cd src
